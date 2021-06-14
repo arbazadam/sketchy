@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sketchy/business_logic/cubit/pen_cubit.dart';
 import 'package:sketchy/presentation/widgets/pen_dialog_body.dart';
 
 class SideToolBar extends StatelessWidget {
@@ -33,33 +37,31 @@ class SideToolBar extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          Padding(
-              padding: EdgeInsets.all(10),
-              child: GestureDetector(
-                child: FaIcon(FontAwesomeIcons.pen),
-                onTap: () {
+          IconButton(
+              onPressed: () {
+                if (Platform.isAndroid) {
                   showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                            elevation: 1,
                             content: PenDialog(),
                           ));
-                },
-              )),
-          Padding(
-              padding: EdgeInsets.all(10),
-              child: FaIcon(FontAwesomeIcons.eraser)),
-          Padding(
-              padding: EdgeInsets.all(10),
-              child: FaIcon(FontAwesomeIcons.handSpock)),
-          Padding(
-              padding: EdgeInsets.all(10),
-              child: FaIcon(FontAwesomeIcons.fillDrip)),
-          Padding(
-              padding: EdgeInsets.all(10),
-              child: FaIcon(FontAwesomeIcons.layerGroup)),
-          Padding(
-              padding: EdgeInsets.all(10), child: FaIcon(FontAwesomeIcons.plus))
+                }
+                if (Platform.isIOS) {
+                  showCupertinoDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                            content: PenDialog(),
+                          ));
+                }
+              },
+              icon: FaIcon(FontAwesomeIcons.pen)),
+          IconButton(onPressed: () {}, icon: FaIcon(FontAwesomeIcons.eraser)),
+          IconButton(
+              onPressed: () {}, icon: FaIcon(FontAwesomeIcons.handSpock)),
+          IconButton(onPressed: () {}, icon: FaIcon(FontAwesomeIcons.fillDrip)),
+          IconButton(
+              onPressed: () {}, icon: FaIcon(FontAwesomeIcons.layerGroup)),
+          IconButton(onPressed: () {}, icon: FaIcon(FontAwesomeIcons.plus)),
         ],
       ),
     );

@@ -9,7 +9,7 @@ class PenCubit extends Cubit<PenState> {
 
   void changeSliderValue(double sliderVal) {
     print('changeSlider called');
-    print(state);
+    print(state.penType);
     emit(state.copyWith(penThickness: sliderVal));
     print(state);
   }
