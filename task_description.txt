@@ -1,0 +1,11 @@
+The screen has a lot of details and it measures the skills of working with flutter widgets.
+
+Description of the task: 
+The side Menu bar is used to give the user the ability to choose the drawing tool.
+When you click on the "Pen" Icon, a popup shows up to take the configuration of the Pen from the user.
+When you click on any drawing tool, it should take a different color (aqua in the attached image).
+When the user clicks anywhere else, the popup should disappear.
+BLOC pattern should be used for state management. you should use it to track the state of the Pen menu. (current color of the pen, current type & current thickness).
+The exact icons are not mandatory, you can use any icons of your choice if it is hard to find the exact icon.
+top right menu that shows a button to add new users, the users of the meeting and setting button. the functionality of these buttons is not required as part of the task (only the UI).
+We expect a responsive screen that works properly on iPhone & Android (different editions). 
