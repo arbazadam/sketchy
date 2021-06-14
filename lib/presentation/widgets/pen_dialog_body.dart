@@ -60,13 +60,15 @@ class PenDialog extends StatelessWidget {
               children: [
                 BlocBuilder<PenCubit, PenState>(
                   builder: (context, state) {
+                    print('running the slider builder');
                     return Slider(
+                      label: state.penThickness.round().toString(),
                       activeColor: Color.fromRGBO(0, 255, 255, 1),
                       min: 0,
                       max: 10,
-                      value: 2,
+                      divisions: 100,
+                      value: state.penThickness,
                       onChanged: (value) {
-                        print(value);
                         BlocProvider.of<PenCubit>(context)
                             .changeSliderValue(value);
                       },

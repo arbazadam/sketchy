@@ -20,7 +20,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          sliderTheme: SliderThemeData(thumbColor: Colors.red),
+          sliderTheme: SliderThemeData(
+              inactiveTrackColor: Colors.black87,
+              trackHeight: 3.0,
+              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 5.0)),
           primarySwatch: Colors.blue,
         ),
         home: ParentWidget(),

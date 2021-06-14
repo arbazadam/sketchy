@@ -8,13 +8,16 @@ class PenCubit extends Cubit<PenState> {
   PenCubit() : super(PenState());
 
   void changeSliderValue(double sliderVal) {
-    print('changeSlider called');
-    print(state.penType);
-    emit(state.copyWith(penThickness: sliderVal));
-    print(state);
+    emit(state.copyWith(
+        penThickness: sliderVal,
+        penColor: state.penColor,
+        penType: state.penType));
   }
 
   void changeColor(Color color) {
-    emit(state.copyWith(penColor: color));
+    emit(state.copyWith(
+        penColor: color,
+        penThickness: state.penThickness,
+        penType: state.penType));
   }
 }

@@ -1,16 +1,14 @@
 part of 'pen_cubit.dart';
 
-class PenState extends Equatable {
+class PenState {
   PenState(
       {this.penColor = Colors.black,
-      this.penThickness = 4.0,
+      this.penThickness = 0.0,
       this.penType = PenType.NormalPen});
 
   final penThickness;
   final penType;
   final penColor;
-  @override
-  List<Object> get props => [];
 
   PenState copyWith({penThickness, penType, penColor}) {
     return PenState(
