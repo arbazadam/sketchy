@@ -10,7 +10,6 @@ class PenDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('build called');
     return Container(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
@@ -27,25 +26,47 @@ class PenDialog extends StatelessWidget {
             ),
             Row(
               children: [
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Color.fromRGBO(49, 218, 220, 1),
-                  child: FaIcon(
-                    FontAwesomeIcons.pencilAlt,
-                    color: Colors.black,
-                    size: 23.0,
+                GestureDetector(
+                  onTap: () {
+                    context.read<PenCubit>().changePenType(PenType.NormalPen);
+                  },
+                  child: BlocBuilder<PenCubit, PenState>(
+                    builder: (context, state) {
+                      return CircleAvatar(
+                        radius: 20,
+                        backgroundColor: state.penType == PenType.NormalPen
+                            ? Color.fromRGBO(49, 218, 220, 1)
+                            : Color.fromRGBO(242, 242, 242, 1),
+                        child: FaIcon(
+                          FontAwesomeIcons.pencilAlt,
+                          color: Colors.black,
+                          size: 23.0,
+                        ),
+                      );
+                    },
                   ),
                 ),
                 SizedBox(
                   width: 20,
                 ),
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Color.fromRGBO(242, 242, 242, 1),
-                  child: FaIcon(
-                    FontAwesomeIcons.pen,
-                    color: Colors.black,
-                    size: 23.0,
+                GestureDetector(
+                  onTap: () {
+                    context.read<PenCubit>().changePenType(PenType.AbNormalPen);
+                  },
+                  child: BlocBuilder<PenCubit, PenState>(
+                    builder: (context, state) {
+                      return CircleAvatar(
+                        radius: 20,
+                        backgroundColor: state.penType == PenType.AbNormalPen
+                            ? Color.fromRGBO(49, 218, 220, 1)
+                            : Color.fromRGBO(242, 242, 242, 1),
+                        child: FaIcon(
+                          FontAwesomeIcons.pen,
+                          color: Colors.black,
+                          size: 23.0,
+                        ),
+                      );
+                    },
                   ),
                 )
               ],
@@ -60,7 +81,6 @@ class PenDialog extends StatelessWidget {
               children: [
                 BlocBuilder<PenCubit, PenState>(
                   builder: (context, state) {
-                    print('running the slider builder');
                     return Slider(
                       label: state.penThickness.round().toString(),
                       activeColor: Color.fromRGBO(0, 255, 255, 1),
@@ -77,11 +97,9 @@ class PenDialog extends StatelessWidget {
                 ),
                 BlocBuilder<PenCubit, PenState>(
                   builder: (context, state) {
-                    print('builder called');
-                    print(state.penColor);
                     return CircleAvatar(
                       backgroundColor: state.penColor,
-                      radius: state.penThickness,
+                      radius: state.penThickness == 0 ? 1 : state.penThickness,
                     );
                   },
                 )
@@ -97,7 +115,6 @@ class PenDialog extends StatelessWidget {
                 ...colors.map((e) => Container(
                       child: GestureDetector(
                         onTap: () {
-                          print(e.toString());
                           BlocProvider.of<PenCubit>(context).changeColor(e);
                         },
                       ),

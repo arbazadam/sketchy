@@ -1,9 +1,9 @@
 part of 'pen_cubit.dart';
 
-class PenState {
+class PenState extends Equatable {
   PenState(
       {this.penColor = Colors.black,
-      this.penThickness = 0.0,
+      this.penThickness = 1.0,
       this.penType = PenType.NormalPen});
 
   final penThickness;
@@ -16,6 +16,9 @@ class PenState {
         penThickness: penThickness ?? this.penThickness,
         penType: penType ?? this.penType);
   }
+
+  @override
+  List<Object?> get props => [penColor, penType, penThickness];
 }
 
 enum PenType { NormalPen, AbNormalPen }

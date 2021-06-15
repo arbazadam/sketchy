@@ -20,4 +20,11 @@ class PenCubit extends Cubit<PenState> {
         penThickness: state.penThickness,
         penType: state.penType));
   }
+
+  void changePenType(PenType penType) {
+    emit(state.copyWith(
+        penColor: state.penColor,
+        penThickness: state.penThickness,
+        penType: penType));
+  }
 }
