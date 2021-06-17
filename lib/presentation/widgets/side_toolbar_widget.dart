@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sketchy/business_logic/cubit/pen_cubit.dart';
+
 import 'package:sketchy/presentation/widgets/pen_dialog_body.dart';
 
 class SideToolBar extends StatelessWidget {
@@ -47,14 +47,14 @@ class SideToolBar extends StatelessWidget {
                           ));
                 }
                 if (Platform.isIOS) {
-                  showCupertinoDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                            content: PenDialog(),
-                          ));
+                  // showCupertinoDialog(
+                  //     context: context,
+                  //     builder: (context) => AlertDialog(
+                  //           content: PenDialog(),
+                  //         ));
                 }
               },
-              icon: FaIcon(FontAwesomeIcons.pen)),
+              icon: FaIcon(FontAwesomeIcons.pencilAlt)),
           IconButton(onPressed: () {}, icon: FaIcon(FontAwesomeIcons.eraser)),
           IconButton(
               onPressed: () {}, icon: FaIcon(FontAwesomeIcons.handSpock)),
@@ -66,4 +66,12 @@ class SideToolBar extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget generateIcons(Icon icon, void Function() onPressed) {
+  return IconButton(
+      onPressed: () {
+        //send a click event which will change the color of the icon
+      },
+      icon: icon);
 }

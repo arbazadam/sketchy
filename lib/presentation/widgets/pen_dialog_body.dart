@@ -77,16 +77,16 @@ class PenDialog extends StatelessWidget {
             Text('Thickness'),
 
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 BlocBuilder<PenCubit, PenState>(
                   builder: (context, state) {
                     return Slider(
-                      label: state.penThickness.round().toString(),
+                      label: state.penThickness.toStringAsFixed(1).toString(),
                       activeColor: Color.fromRGBO(0, 255, 255, 1),
                       min: 0,
-                      max: 10,
-                      divisions: 100,
+                      max: 20,
+                      divisions: 200,
                       value: state.penThickness,
                       onChanged: (value) {
                         BlocProvider.of<PenCubit>(context)
@@ -97,9 +97,11 @@ class PenDialog extends StatelessWidget {
                 ),
                 BlocBuilder<PenCubit, PenState>(
                   builder: (context, state) {
-                    return CircleAvatar(
-                      backgroundColor: state.penColor,
-                      radius: state.penThickness == 0 ? 1 : state.penThickness,
+                    return Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle, color: state.penColor),
+                      height: state.penThickness < 2 ? 2 : state.penThickness,
+                      width: state.penThickness < 2 ? 2 : state.penThickness,
                     );
                   },
                 )
@@ -120,11 +122,20 @@ class PenDialog extends StatelessWidget {
                       ),
                       margin:
                           e != colors.first ? EdgeInsets.only(left: 8) : null,
-                      height: 30,
-                      width: 25,
+                      height: 22,
+                      width: 22,
                       decoration:
                           BoxDecoration(color: e, shape: BoxShape.circle),
                     )),
+                SizedBox(
+                  width: 25,
+                ),
+                Container(
+                  height: 22,
+                  width: 22,
+                  decoration:
+                      BoxDecoration(color: Colors.red, shape: BoxShape.circle),
+                )
               ],
             )
           ],

@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sketchy/business_logic/cubit/painter_cubit.dart';
 
 import 'custom_painter.dart';
 
 class CanvasWidget extends StatelessWidget {
-  const CanvasWidget({Key? key}) : super(key: key);
+  CanvasWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Offset> list = [];
     return GestureDetector(
-      onTap: () {
-        print('tap recieved');
-      },
       child: CustomPaint(
         painter: MyCustomPainter(),
         child: Container(),
       ),
-      onPanDown: (x) {},
-      onPanUpdate: (x) {},
+      onPanDown: (x) {
+        list.add(x.localPosition);
+        context.read<PainterCubit>().drawALine(list);
+      },
+      onPanUpdate: (x) {
+        list.add(x.localPosition);
+        context.read<PainterCubit>().drawALine(list);
+      },
       onPanEnd: (y) {},
     );
   }

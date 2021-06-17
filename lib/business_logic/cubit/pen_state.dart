@@ -3,10 +3,10 @@ part of 'pen_cubit.dart';
 class PenState extends Equatable {
   PenState(
       {this.penColor = Colors.black,
-      this.penThickness = 1.0,
+      this.penThickness = 0.0,
       this.penType = PenType.NormalPen});
 
-  final penThickness;
+  double penThickness;
   final penType;
   final penColor;
 

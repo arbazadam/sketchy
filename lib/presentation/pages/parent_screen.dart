@@ -8,15 +8,14 @@ class ParentWidget extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Container(
+      body: SafeArea(
           child: Stack(
         children: [
           CanvasWidget(),
-          Positioned(left: 10, top: 10, child: SideToolBar()),
-          Positioned(right: 8, top: 10, child: Collaboration())
+          Positioned(left: 9, top: 70, child: SideToolBar()),
+          Positioned(right: 10, top: 10, child: Collaboration()),
         ],
       )),
-    ));
+    );
   }
 }

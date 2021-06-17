@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sketchy/business_logic/cubit/painter_cubit.dart';
 import 'package:sketchy/business_logic/cubit/pen_cubit.dart';
+import 'package:sketchy/constants/custom_track_shape.dart';
 import 'package:sketchy/presentation/widgets/pen_dialog_body.dart';
 
 import 'bloc_observer.dart';
@@ -14,13 +16,19 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PenCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => PenCubit()),
+        BlocProvider(create: (context) => PainterCubit())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           sliderTheme: SliderThemeData(
+              valueIndicatorColor: Colors.transparent,
+              valueIndicatorTextStyle: TextStyle(color: Colors.black),
+              trackShape: CustomTrackShape(),
               inactiveTrackColor: Colors.black87,
               trackHeight: 3.0,
               thumbShape: RoundSliderThumbShape(enabledThumbRadius: 5.0)),
