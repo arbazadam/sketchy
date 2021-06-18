@@ -11,8 +11,19 @@ class PenDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 2,
+              offset: Offset(0, .7),
+            )
+          ],
+          borderRadius: BorderRadius.circular(7)),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,13 +139,16 @@ class PenDialog extends StatelessWidget {
                           BoxDecoration(color: e, shape: BoxShape.circle),
                     )),
                 SizedBox(
-                  width: 25,
+                  width: 20,
                 ),
                 Container(
                   height: 22,
                   width: 22,
-                  decoration:
-                      BoxDecoration(color: Colors.red, shape: BoxShape.circle),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              'https://www.technipages.com/wp-content/uploads/2020/12/Change-color-background.jpg'))),
                 )
               ],
             )

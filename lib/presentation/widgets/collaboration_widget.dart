@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'collaboraters.dart';
 
@@ -12,9 +13,9 @@ class Collaboration extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).orientation == Orientation.landscape
               ? MediaQuery.of(context).size.width * .3
-              : MediaQuery.of(context).size.width * .4,
+              : MediaQuery.of(context).size.width * .45,
           child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 6),
+              padding: EdgeInsets.symmetric(vertical: 2),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -31,8 +32,26 @@ class Collaboration extends StatelessWidget {
                     ],
                   ),
                   Collaboraters(),
-                  getUser(
-                      'https://media-exp1.licdn.com/dms/image/C4D03AQGbH7xjLIZ3XQ/profile-displayphoto-shrink_800_800/0/1622409276361?e=1629331200&v=beta&t=J-wDk8JCYP_UQ2Msajqv2h-y6HAkNsKt-VLpDBcNCQw'),
+                  Stack(
+                    children: [
+                      Container(
+                        height: 52,
+                        child: CircleAvatar(
+                          radius: 18,
+                          backgroundImage: NetworkImage(
+                              'https://media-exp1.licdn.com/dms/image/C4D03AQGbH7xjLIZ3XQ/profile-displayphoto-shrink_800_800/0/1622409276361?e=1629331200&v=beta&t=J-wDk8JCYP_UQ2Msajqv2h-y6HAkNsKt-VLpDBcNCQw'),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: -3,
+                        left: 12,
+                        child: Icon(
+                          FontAwesomeIcons.chevronDown,
+                          size: 13,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               )),
           decoration: BoxDecoration(
@@ -51,8 +70,8 @@ class Collaboration extends StatelessWidget {
 
 Widget customBlackContainers() {
   return Container(
-    height: 50.0,
-    width: 50.0,
+    height: 53.0,
+    width: 53.0,
     padding: const EdgeInsets.all(10.0),
     child: Align(
       alignment: Alignment.center,

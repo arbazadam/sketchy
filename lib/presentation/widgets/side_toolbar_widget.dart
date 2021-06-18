@@ -37,25 +37,12 @@ class SideToolBar extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          IconButton(
-              onPressed: () {
-                if (Platform.isAndroid) {
-                  showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                            content: PenDialog(),
-                          ));
-                }
-                if (Platform.isIOS) {
-                  // showCupertinoDialog(
-                  //     context: context,
-                  //     builder: (context) => AlertDialog(
-                  //           content: PenDialog(),
-                  //         ));
-                }
-              },
-              icon: FaIcon(FontAwesomeIcons.pencilAlt)),
-          IconButton(onPressed: () {}, icon: FaIcon(FontAwesomeIcons.eraser)),
+          ToolIcon(
+            icon: FontAwesomeIcons.pencilAlt,
+          ),
+          ToolIcon(
+            icon: FontAwesomeIcons.eraser,
+          ),
           IconButton(
               onPressed: () {}, icon: FaIcon(FontAwesomeIcons.handSpock)),
           IconButton(onPressed: () {}, icon: FaIcon(FontAwesomeIcons.fillDrip)),
@@ -74,4 +61,31 @@ Widget generateIcons(Icon icon, void Function() onPressed) {
         //send a click event which will change the color of the icon
       },
       icon: icon);
+}
+
+class ToolIcon extends StatefulWidget {
+  ToolIcon({Key? key, this.icon}) : super(key: key);
+  IconData? icon;
+
+  @override
+  _ToolIconState createState() => _ToolIconState();
+}
+
+class _ToolIconState extends State<ToolIcon> {
+  var _isClicked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          if (widget.icon == FontAwesomeIcons.pencilAlt) {
+            print('pencil clicked');
+          }
+          setState(() {
+            _isClicked = !_isClicked;
+          });
+        },
+        color: _isClicked ? Color(0xff00ffff) : Colors.black,
+        icon: Icon(widget.icon));
+  }
 }
