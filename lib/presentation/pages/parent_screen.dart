@@ -24,20 +24,16 @@ class ParentWidget extends StatelessWidget {
                   : 70,
               child: SideToolBar()),
           Positioned(right: 10, top: 10, child: Collaboration()),
-          BlocBuilder<PainterCubit, PainterState>(
-            builder: (context, painterState) {
-              return BlocBuilder<ToolbarCubit, ToolbarState>(
-                builder: (context, state) {
-                  print(state.penIndex.toString());
-                  print(painterState.toString());
-                  return state.penIndex == 0
-                      ? Positioned(top: 85, left: 70, child: PenDialog())
-                      : Container(
-                          height: 0,
-                          width: 0,
-                        );
-                },
-              );
+          BlocBuilder<ToolbarCubit, ToolbarState>(
+            builder: (context, state) {
+              print(state.penIndex.toString());
+
+              return state.penIndex == 0
+                  ? Positioned(top: 85, left: 70, child: PenDialog())
+                  : Container(
+                      height: 0,
+                      width: 0,
+                    );
             },
           ),
           //CustomArrow()
