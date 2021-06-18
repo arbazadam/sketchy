@@ -6,7 +6,7 @@ class PenState extends Equatable {
       this.penThickness = 0.0,
       this.penType = PenType.NormalPen});
 
-  double penThickness;
+  final penThickness;
   final penType;
   final penColor;
 

@@ -1,12 +1,12 @@
 part of 'painter_cubit.dart';
 
-class NewState {
-  const NewState({this.offset = const []});
+class PainterState {
+  const PainterState({this.offset = const []});
 
   final List<Offset> offset;
 
-  NewState copyWith({newOffset}) {
-    return NewState(offset: newOffset ?? offset);
+  PainterState copyWith({newOffset}) {
+    return PainterState(offset: newOffset ?? offset);
   }
 
   // TODO: implement props

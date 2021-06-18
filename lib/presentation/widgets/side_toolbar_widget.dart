@@ -1,15 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'package:sketchy/presentation/widgets/pen_dialog_body.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sketchy/business_logic/cubit/toolbar_cubit.dart';
+import 'package:sketchy/constants/data.dart';
 
 class SideToolBar extends StatelessWidget {
-  const SideToolBar({Key? key}) : super(key: key);
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       decoration:
@@ -37,55 +32,23 @@ class SideToolBar extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          ToolIcon(
-            icon: FontAwesomeIcons.pencilAlt,
-          ),
-          ToolIcon(
-            icon: FontAwesomeIcons.eraser,
-          ),
-          IconButton(
-              onPressed: () {}, icon: FaIcon(FontAwesomeIcons.handSpock)),
-          IconButton(onPressed: () {}, icon: FaIcon(FontAwesomeIcons.fillDrip)),
-          IconButton(
-              onPressed: () {}, icon: FaIcon(FontAwesomeIcons.layerGroup)),
-          IconButton(onPressed: () {}, icon: FaIcon(FontAwesomeIcons.plus)),
+          ...List.generate(
+              iconsList.length,
+              (index) => BlocBuilder<ToolbarCubit, ToolbarState>(
+                      builder: (context, state) {
+                    return IconButton(
+                        onPressed: () {
+                          context.read<ToolbarCubit>().changeIndex(index);
+                        },
+                        icon: Icon(
+                          iconsList[index],
+                          color: state.penIndex == index
+                              ? Color(0xff00ffff)
+                              : Colors.black,
+                        ));
+                  }))
         ],
       ),
     );
-  }
-}
-
-Widget generateIcons(Icon icon, void Function() onPressed) {
-  return IconButton(
-      onPressed: () {
-        //send a click event which will change the color of the icon
-      },
-      icon: icon);
-}
-
-class ToolIcon extends StatefulWidget {
-  ToolIcon({Key? key, this.icon}) : super(key: key);
-  IconData? icon;
-
-  @override
-  _ToolIconState createState() => _ToolIconState();
-}
-
-class _ToolIconState extends State<ToolIcon> {
-  var _isClicked = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: () {
-          if (widget.icon == FontAwesomeIcons.pencilAlt) {
-            print('pencil clicked');
-          }
-          setState(() {
-            _isClicked = !_isClicked;
-          });
-        },
-        color: _isClicked ? Color(0xff00ffff) : Colors.black,
-        icon: Icon(widget.icon));
   }
 }

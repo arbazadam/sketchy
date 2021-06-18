@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sketchy/business_logic/cubit/painter_cubit.dart';
+import 'package:sketchy/business_logic/cubit/toolbar_cubit.dart';
 import 'package:sketchy/constants/custom_arrow_clipper.dart';
 import 'package:sketchy/presentation/widgets/canvas_widget.dart';
 import 'package:sketchy/presentation/widgets/collaboration_widget.dart';
@@ -21,7 +24,20 @@ class ParentWidget extends StatelessWidget {
                   : 70,
               child: SideToolBar()),
           Positioned(right: 10, top: 10, child: Collaboration()),
-          Positioned(top: 85, left: 70, child: PenDialog()),
+          BlocBuilder<PainterCubit, PainterState>(
+            builder: (context, painterState) {
+              return BlocBuilder<ToolbarCubit, ToolbarState>(
+                builder: (context, state) {
+                  return state.penIndex == 0
+                      ? Positioned(top: 85, left: 70, child: PenDialog())
+                      : Container(
+                          height: 0,
+                          width: 0,
+                        );
+                },
+              );
+            },
+          ),
           //CustomArrow()
         ],
       )),

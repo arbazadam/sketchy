@@ -6,6 +6,7 @@ import 'package:sketchy/constants/custom_track_shape.dart';
 import 'package:sketchy/presentation/widgets/pen_dialog_body.dart';
 
 import 'bloc_observer.dart';
+import 'business_logic/cubit/toolbar_cubit.dart';
 import 'presentation/pages/parent_screen.dart';
 
 void main() {
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => PenCubit()),
+        BlocProvider(create: (context) => ToolbarCubit()),
         BlocProvider(create: (context) => PainterCubit())
       ],
       child: MaterialApp(
