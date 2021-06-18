@@ -28,7 +28,7 @@ dependencies:
   equatable: ^2.0.2
   flutter_bloc: ^7.0.1
   font_awesome_flutter: ^9.1.0
-  custom_pop_up_menu: ^1.2.0
+  
 
 dev_dependencies:
   flutter_test:

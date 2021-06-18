@@ -14,5 +14,3 @@ class ToolbarState extends Equatable {
   @override
   List<Object?> get props => [penIndex];
 }
-
-enum PenType { NormalPen, AbNormalPen }

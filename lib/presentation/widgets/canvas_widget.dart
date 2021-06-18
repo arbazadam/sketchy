@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketchy/business_logic/cubit/painter_cubit.dart';
+import 'package:sketchy/business_logic/cubit/pen_cubit.dart';
+import 'package:sketchy/business_logic/cubit/toolbar_cubit.dart';
 
 import 'custom_painter.dart';
 
@@ -15,13 +17,15 @@ class CanvasWidget extends StatelessWidget {
         painter: MyCustomPainter(),
         child: Container(),
       ),
+      onTap: () {
+        print('tap');
+        context.read<ToolbarCubit>().changeIndex(11);
+      },
       onPanDown: (x) {
         list.add(x.localPosition);
-        context.read<PainterCubit>().drawALine(list);
       },
       onPanUpdate: (x) {
         list.add(x.localPosition);
-        context.read<PainterCubit>().drawALine(list);
       },
       onPanEnd: (y) {},
     );

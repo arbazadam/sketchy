@@ -28,6 +28,8 @@ class ParentWidget extends StatelessWidget {
             builder: (context, painterState) {
               return BlocBuilder<ToolbarCubit, ToolbarState>(
                 builder: (context, state) {
+                  print(state.penIndex.toString());
+                  print(painterState.toString());
                   return state.penIndex == 0
                       ? Positioned(top: 85, left: 70, child: PenDialog())
                       : Container(
